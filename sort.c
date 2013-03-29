@@ -32,3 +32,21 @@ void siftDown(int numbers[], int root, int bottom) {
     }
 }
 
+void quickSort(int numbers[], int start, int end) {
+    if (end <= start)
+        return;
+    int i = start, j = end, pivot = numbers[(start+end)/2];
+    while (i <= j) {
+        while (numbers[i] < pivot)
+            ++i;
+        while (numbers[j] > pivot)
+            --j;
+        if (i <= j) {
+            swap(numbers+i, numbers+j);
+            ++i;
+            --j;
+        }
+    }
+    quickSort(numbers, start, j);
+    quickSort(numbers, i, end);
+}
